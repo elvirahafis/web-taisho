@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2023 at 09:04 AM
+-- Generation Time: Dec 08, 2023 at 05:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -61,8 +61,24 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`Kode_Barang`, `Nama_Barang`, `Klasifikasi`, `UOM`) VALUES
-('PROD0023', 'COUNTERPAIN COOL 30 GR', 'COUNTERPAIN COOL 30 GR', 'TUB'),
-('PROD003', 'COUNTERPAIN COOL 60 GR', 'OTC', 'TUB');
+('PROD001', 'COUNTERPAIN PIROXICAM 25 GR', 'OTC', 'TUB'),
+('PROD002', 'COUNTERPAIN COOL 30 GR', 'COUNTERPAIN COOL 30 GR', 'TUB'),
+('PROD003', 'COUNTERPAIN COOL 60 GR', 'OTC', 'TUB'),
+('PROD004', 'COUNTERPAIN CREAM 30 GR', 'OTC', 'TUB'),
+('PROD005', 'COUNTERPAIN CREAM 60 GR', 'OTC', 'TUB'),
+('PROD006', 'KENALOG IN ORABASE 5 GR', 'ETH', 'TUB'),
+('PROD008', 'MYCOSTATIN OS 12 ML', 'ETH', 'TUB'),
+('PROD009', 'MYCOSTATIN OS 30 ML', 'ETH', 'TUB'),
+('PROD010', 'TEMPRA FORTE 60 ML ORANGE', 'OTC', 'BOT'),
+('PROD011', 'TEMPRA SYRUP 30 ML', 'OTC', 'BOT'),
+('PROD012', 'TEMPRA SYRUP 100 ML', 'OTC', 'BOT'),
+('PROD013', 'TEMPRA SYRUP 60 ML', 'OTC', 'BOT'),
+('PROD014', 'TEMPRA DROPS 15 ML', 'OTC', 'BOT'),
+('PROD015', 'MYCO-Z OINTMENT 10 GR', 'ETH', 'TUB'),
+('PROD016', 'DRAMAMINE TAB 50 MG 100', 'ETH', 'TAB'),
+('PROD017', 'ENGRAN FOOD 25X4 S', 'ETH', 'TAB'),
+('PROD018', 'KENACORT TAB 4 MG 100', 'ETH', 'TUB'),
+('PROD019', 'THERAGRAN-M 100S', 'Vitamin', 'TUB');
 
 -- --------------------------------------------------------
 
@@ -85,9 +101,10 @@ CREATE TABLE `purchase` (
 --
 
 INSERT INTO `purchase` (`No_dokumen_masuk`, `Tanggal_transaksi`, `Nomor_PO`, `Kode_barang`, `Nama_barang`, `Qty`, `Harga_beli`) VALUES
-('P0OA', '2023-12-09', 'P9IE', 'AB0001', 'AB0001', 100, 12000000),
+('P0OA123', '2023-12-09', 'P9IE', 'AB0001', 'AB0001', 100, 12000000),
 ('POSFIERG', '2023-12-20', 'SGERG', 'SSR', 'Amfetamin', 123, 1200000),
-('reer', '2023-12-27', 'dfgdf', 'ddf', 'df', 3, 12333);
+('reer', '2023-12-27', 'dfgdf', 'ddf', 'df', 3, 12333),
+('WER3F', '2023-12-20', 'WEFWE', 'WEFWE', 'WEFWER', 34, 12000);
 
 -- --------------------------------------------------------
 
@@ -112,9 +129,9 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`No_dokumen_keluar`, `No_dokumen_masuk`, `Tanggal_transaksi`, `Kode_barang`, `Nama_barang`, `Kode_outlet`, `Nama_outlet`, `Qty`, `Harga_jual`) VALUES
-('ADSA', 'P0OA', '2023-12-22', 'SAS', 'ASD', 'ASD', 'ASD', 45, 345),
-('ADSAasd', 'P0OA', '2023-12-13', 'SAS', 'ASD', 'ASD', 'ASD', 45, 345),
 ('dsdf', 'POSFIERG', '2023-12-23', 'asdas', 'dasd', 'asdas', 'asdas', 3, 0),
+('SFGRGT', 'P0OA123', '2023-12-21', 'WE', 'WEW', 'WE', 'WE', 34, 123),
+('SFR', 'WER3F', '2023-12-15', 'DWED', 'WEDEW', 'WEDE', 'WED', 12, 12000),
 ('SVF', 'POSFIERG', '2023-12-13', 'DC', 'DSCD', 'DC', 'SDC', 340, 12000);
 
 -- --------------------------------------------------------
@@ -139,7 +156,10 @@ INSERT INTO `user` (`User_Id`, `Fullname`, `password`) VALUES
 (6, 'member@member.com', 'member@cishop'),
 (7, 'Jaemin NCT', 'Jaemin NCT'),
 (8, 'Hechan NCT', 'Hechan NCT'),
-(9, 'elvirahafis', 'elvirahafis');
+(9, 'elvirahafis', 'elvirahafis'),
+(10, 'Elvira Hafis', 'sdfsd'),
+(11, 'Budi', 'Budi'),
+(13, 'Elvira123', 'elvira123');
 
 --
 -- Indexes for dumped tables
@@ -184,7 +204,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `User_Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -194,7 +214,7 @@ ALTER TABLE `user`
 -- Constraints for table `sales`
 --
 ALTER TABLE `sales`
-  ADD CONSTRAINT `sales_fk2` FOREIGN KEY (`No_dokumen_masuk`) REFERENCES `purchase` (`No_dokumen_masuk`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `sales_fk2` FOREIGN KEY (`No_dokumen_masuk`) REFERENCES `purchase` (`No_dokumen_masuk`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
